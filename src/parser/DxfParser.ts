@@ -23,7 +23,7 @@ export class DxfParserOptions {
   /** Thumbnail image format.
    * - 'base64': Base64-encoded string (default, ready for web display)
    * - 'hex': Raw hexadecimal string
-   * - 'buffer': Node.js Buffer object
+   * - 'buffer': Uint8Array object (browser-compatible alternative to Node.js Buffer)
    */
   thumbnailImageFormat: 'base64' | 'hex' | 'buffer' = 'base64'
 }

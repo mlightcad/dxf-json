@@ -30,6 +30,6 @@ export interface ParsedDxf {
   }
   thumbnailImage?: {
     size: number
-    data: string | Buffer
+    data: string | Uint8Array
   }
 }
