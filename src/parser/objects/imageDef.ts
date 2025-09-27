@@ -4,7 +4,7 @@ import {
     Identity,
     PointParser,
 } from '../shared/parserGenerator';
-import type { CommonDXFObject } from './common';
+import { CommonDXFObject } from './types';
 
 export const ImageDefSnippets: DXFParserSnippet[] = [
     {

@@ -1,4 +1,4 @@
-import type DxfArrayScanner from '../../DxfArrayScanner';
+import type { DxfArrayScanner } from '../../DxfArrayScanner';
 import type { ScannerGroup } from '../../DxfArrayScanner';
 import * as helpers from '../../ParseHelpers';
 import type { AttachmentPoint } from '../../../consts';
