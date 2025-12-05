@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc --project tsconfig.build.json && rollup --config",
+    "build-pages": "npm run build && cp -r ./dist ./examples/dist",
     "test": "vitest run --config ./vite.config.ts && npm run typetest",
     "test-dev": "vitest --config ./vite.config.ts --silent=false",
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",

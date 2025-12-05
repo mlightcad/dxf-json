@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dxf Database JSON Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsoneditor@10.2.0/dist/jsoneditor.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/jsoneditor@10.2.0/dist/jsoneditor.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Dxf Database JSON Viewer</h1>
+    <input type="file" id="fileInput" accept=".dxf" />
+    <div id="jsonEditor"></div>
+    <script type="module" >
+      import DxfParser from './dist/bundle.mjs'
+
+      // 创建支持 GB2312 编码的解析器
+      const parser = new DxfParser({ encoding: 'gb2312', encodingFailureFatal: false })
+
+      // create the editor
+      const container = document.getElementById('jsonEditor')
+      const options = {
+        mode: 'view'
+      }
+      const editor = new JSONEditor(container, options)
+    
+      // handle file input change event
+      const fileInput = document.getElementById('fileInput')
+      fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0]
+        if (file) {
+          // create a FileReader to read the file
+          const reader = new FileReader()
+
+          // define the callback function for when the file is read
+          reader.onload = async function(e) {
+            try {
+              const fileContent = e.target.result
+              
+              const result = await parser.parseSync(fileContent)
+              editor.set(result)
+            } catch (error) {
+              console.error('Failed to process dxf file: ', error)
+            }
+          }
+
+          reader.readAsText(file)
+        } else {
+          console.log('No file selected')
+        }
+      })
+    </script>
+</body>
+</html>
