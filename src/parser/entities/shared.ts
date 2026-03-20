@@ -82,6 +82,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 310,
         name: 'proxyEntity',
+        isMultiple: true,
         parser: Identity,
     },
     {
@@ -109,7 +110,9 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
         name: 'colorIndex',
         parser(curr, _, entity) {
             const colorIndex = curr.value;
-            entity.color = getAcadColor(Math.abs(colorIndex));
+            if (colorIndex > 0 && colorIndex < 256) {
+                entity.color = getAcadColor(Math.abs(colorIndex));
+            }
             return colorIndex;
         },
     },
@@ -139,7 +142,16 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
         parser: ToBoolean,
     },
     {
-        code: 100, // AcDbEntity를 소모시키기 위함
+        // Many entities include multiple subclass markers (e.g. AcDbObject, AcDbEntity, AcDbMText).
+        // Allow repeated 100 groups and keep the last subclass marker.
+        code: 100,
+        name: 'subclassMarker',
+        parser: Identity,
+        isMultiple: true,
+        isReducible: true,
+    },
+    {
+        code: 160, // Unknown data
     },
     {
         code: 330,

@@ -32,6 +32,9 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
     switch (curr.code) {
         case 0:
             return false;
+        case 8:
+            entity.layer = curr.value;
+            break;
         case 100:
             entity.subclassMarker = curr.value;
             break;

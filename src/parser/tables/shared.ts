@@ -9,6 +9,11 @@ export const CommonTableEntryParserSnippets: DXFParserSnippet[] = [
         code: 100,
         name: 'subclassMarker',
         parser: Identity,
+        // Many table records include multiple subclass markers (e.g. AcDbObject,
+        // AcDbSymbolTableRecord, AcDbViewportTableRecord). Allow repeated 100s
+        // and keep the last one.
+        isMultiple: true,
+        isReducible: true,
     },
     {
         code: 330,
