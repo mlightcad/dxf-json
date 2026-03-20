@@ -4,6 +4,7 @@ import {
   DXFParserSnippet,
   Identity,
 } from '../shared/parserGenerator.ts'
+import { parseExtensions } from '../shared/extensions/parser.ts'
 import { isMatched } from '../shared/isMatched.ts'
 import type { DxfTable } from './types.ts'
 import { parseAppIdTableEntry } from './appId/parser.ts'
@@ -45,15 +46,20 @@ const CommonTableParserSnippets: DXFParserSnippet[] = [
     parser: Identity,
   },
   {
-    // ACAD_XDICTIONARY, ignore
-    code: 102,
+    code: 102, // {ACAD_XDICTIONARY
+    parser: parseExtensions,
+  },
+  {
+    code: 102, // {ACAD_REACTORS
+    parser: parseExtensions,
+  },
+  {
+    code: 102, // {application_name
+    parser: parseExtensions,
   },
   {
     code: 360,
     isMultiple: true,
-  },
-  {
-    code: 102,
   },
   {
     code: 5,
