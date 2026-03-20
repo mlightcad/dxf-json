@@ -1,10 +1,10 @@
-import type { DxfArrayScanner } from '../../DxfArrayScanner';
-import type { ScannerGroup } from '../../DxfArrayScanner';
-import * as helpers from '../../ParseHelpers';
-import type { AttachmentPoint } from '../../../consts';
-import { parsePoint } from '../../shared/parsePoint';
-import { ensurePoint3D } from '../../../utils';
-import type { TableEntity, TableCell } from './types';
+import type { DxfArrayScanner } from '../../DxfArrayScanner.ts';
+import type { ScannerGroup } from '../../DxfArrayScanner.ts';
+import * as helpers from '../../ParseHelpers.ts';
+import type { AttachmentPoint } from '../../../consts/dimension.ts';
+import { parsePoint } from '../../shared/parsePoint.ts';
+import { ensurePoint3D } from '../../../utlis.ts';
+import type { TableEntity, TableCell } from './types.ts';
 
 export class TableEntityParser {
     static ForEntityName = 'ACAD_TABLE';

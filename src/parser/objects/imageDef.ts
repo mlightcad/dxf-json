@@ -1,10 +1,10 @@
-import type { Point2D } from '../../types';
+import type { Point2D } from '../../types/shared.ts';
 import {
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../shared/parserGenerator';
-import { CommonDXFObject } from './types';
+} from '../shared/parserGenerator.ts';
+import { CommonDXFObject } from './types.ts';
 
 export const ImageDefSnippets: DXFParserSnippet[] = [
     {
