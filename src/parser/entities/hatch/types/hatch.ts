@@ -36,12 +36,18 @@ interface HatchEntityBase extends CommonDxfEntity {
 }
 
 export interface GradientHatchEntity extends HatchEntityBase {
+  gradientName: string
   gradientFlag: HatchGradientFlag.Gradient
   gradientColorFlag: HatchGradientColorFlag
   numberOfColors: 0 | 2
   gradientRotation?: number // radian, default = 0
   gradientDefinition: number // 0 ~ 1
   colorTint?: number // 0 ~ 1, default = 0
+  gradientColors?: Array<{
+    tint: number
+    rgb: number
+    colorIndex?: number
+  }>
 }
 
 export type HatchEntity = GradientHatchEntity | HatchEntityBase
