@@ -9,6 +9,7 @@ import {
 import { CommonEntitySnippets } from '../shared.ts'
 import { parseBoundaryPathData } from './boundaryPathData/parser.ts'
 import { parsePatternData } from './patternData.ts'
+import { parseGradientColors } from './gradientColors.ts'
 import type { HatchEntity } from './types/hatch.ts'
 
 const DefaultHathEntity = {
@@ -19,12 +20,14 @@ const DefaultHathEntity = {
 
 const HatchSnippet: DXFParserSnippet[] = [
   {
-    // Unused - String (default = LINEAR)
     code: 470,
+    name: 'gradientName',
+    parser: Identity,
   },
   {
-    // Unused - Reserved for future use:
     code: 463,
+    name: 'gradientColors',
+    parser: parseGradientColors,
   },
   {
     code: 462,
