@@ -3,7 +3,7 @@ import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 /**
  * Parse gradient colors data
  * DXF format:
- *   463 - color tint value
+ *   463 - reserved data for future use
  *   63 - color index (ACI)
  *   421 - RGB color value
  * 
@@ -16,13 +16,13 @@ import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 export function parseGradientColors(
   curr: ScannerGroup,
   scanner: DxfArrayScanner,
-): Array<{ tint: number; rgb: number; colorIndex?: number }> {
-  const colors: Array<{ tint: number; rgb: number; colorIndex?: number }> = []
+): Array<{ reservedField: number; rgb: number; colorIndex?: number }> {
+  const colors: Array<{ reservedField: number; rgb: number; colorIndex?: number }> = []
 
   // Start from 463 and process each color definition
   while (curr.code === 463) {
     const color: any = {
-      tint: curr.value,
+      reservedField: curr.value,
     }
 
     // Read next

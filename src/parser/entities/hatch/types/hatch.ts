@@ -44,7 +44,7 @@ export interface GradientHatchEntity extends HatchEntityBase {
   gradientDefinition: number // 0 ~ 1
   colorTint?: number // 0 ~ 1, default = 0
   gradientColors?: Array<{
-    tint: number
+    reservedField: number
     rgb: number
     colorIndex?: number
   }>
