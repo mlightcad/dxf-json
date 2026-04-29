@@ -84,7 +84,7 @@ export class TableEntityParser {
           curr = scanner.next();
           break;
         case 330:
-          entity.ownerDictionaryId = curr.value as string;
+          entity.ownerBlockRecordSoftId = curr.value as string;
           curr = scanner.next();
           break;
         case 342:

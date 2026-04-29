@@ -33,7 +33,6 @@ export interface TableEntity extends CommonDxfEntity {
   type: 'ACAD_TABLE';
   subclassMarker: 'AcDbTable';
   handle: string;
-  ownerDictionaryId: string;
   name: string;
   version: number;
   startPoint: Point3D;
