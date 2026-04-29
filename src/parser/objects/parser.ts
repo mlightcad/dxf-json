@@ -5,6 +5,7 @@ import { PlotSettingsSnippets } from './plotSettings/parser.ts'
 import { DictionarySnippets } from './dictionary/parser.ts'
 import { SpatialFilterSnippets } from './spatial_filter/parser.ts'
 import { ImageDefSnippets } from './imageDef/parser.ts'
+import { MLeaderStyleSnippets } from './mleaderStyle/parser.ts'
 import { classify } from '../../utlis.ts'
 
 const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
@@ -12,7 +13,8 @@ const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
   PLOTSETTINGS: PlotSettingsSnippets,
   DICTIONARY: DictionarySnippets,
   SPATIAL_FILTER: SpatialFilterSnippets,
-  IMAGEDEF: ImageDefSnippets
+  IMAGEDEF: ImageDefSnippets,
+  MLEADERSTYLE: MLeaderStyleSnippets,
 }
 
 export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
