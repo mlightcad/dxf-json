@@ -6,6 +6,11 @@ import { DictionarySnippets } from './dictionary/parser.ts'
 import { SpatialFilterSnippets } from './spatial_filter/parser.ts'
 import { ImageDefSnippets } from './imageDef/parser.ts'
 import { MLeaderStyleSnippets } from './mleaderStyle/parser.ts'
+import { MLineStyleSnippets } from './mlineStyle/parser.ts'
+import { GroupSnippets } from './group/parser.ts'
+import { LayerFilterSnippets } from './layer_filter/parser.ts'
+import { LayerIndexSnippets } from './layer_index/parser.ts'
+import { DimAssocSnippets } from './dimassoc/parser.ts'
 import { classify } from '../../utlis.ts'
 
 const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
@@ -15,6 +20,11 @@ const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
   SPATIAL_FILTER: SpatialFilterSnippets,
   IMAGEDEF: ImageDefSnippets,
   MLEADERSTYLE: MLeaderStyleSnippets,
+  MLINESTYLE: MLineStyleSnippets,
+  GROUP: GroupSnippets,
+  LAYER_FILTER: LayerFilterSnippets,
+  LAYER_INDEX: LayerIndexSnippets,
+  DIMASSOC: DimAssocSnippets,
 }
 
 export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
