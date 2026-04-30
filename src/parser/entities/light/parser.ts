@@ -1,7 +1,7 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import type { DXFParserSnippet } from '../../shared/parserGenerator.ts'
 import {
   createParser,
-  type DXFParserSnippet,
   Identity,
   PointParser,
   ToBoolean,

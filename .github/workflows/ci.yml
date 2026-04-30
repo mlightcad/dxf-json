@@ -14,5 +14,6 @@ jobs:
           node-version: 22
       - run: npm install
       - run: npm run build
+      - run: npm run viewer:build
       - run: npm install --install-links # this is required since github action ignore symlink
       - run: npm run test

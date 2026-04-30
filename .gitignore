@@ -8,6 +8,7 @@ node_modules/
 .npm
 *.tgz
 dist
+pages-dist
 dependency-graph.svg
 .claude
 CLAUDE.md
