@@ -2,11 +2,20 @@
 
 This is forked version of [dotoritos-kim/dxf-json](https://github.com/dotoritos-kim/dxf-json) with the following extensions which are not supported in the original repository.
 
-- table
+Entities:
+
+- MLEADER (enhanced)
+- TABLE
 
 Objects:
 
-- imagedef
+- DIMASSOC
+- GROUP
+- IMAGEDEF
+- LAYER_FILTER
+- LAYER_INDEX
+- MLEADERSTYLE
+- MLINESTYLE
 
 ## JSON Viewer
 
