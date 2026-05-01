@@ -27,6 +27,8 @@ WALL
 Wall style
 62
 256
+420
+16777215
 51
 90
 52
@@ -37,12 +39,16 @@ Wall style
 0.5
 62
 1
+420
+255
 6
 BYLAYER
 49
 -0.5
 62
 3
+420
+65535
 6
 DASHED
 0
@@ -67,13 +73,15 @@ EOF`.split('\n')
       styleName: 'WALL',
       flags: 19,
       description: 'Wall style',
-      fillColor: 256,
+      fillColor: 16777215,
+      fillColorIndex: 256,
       startAngle: 90,
       endAngle: 45,
       elementCount: 2,
-      elementOffsets: [0.5, -0.5],
-      elementColors: [1, 3],
-      elementLineTypes: ['BYLAYER', 'DASHED'],
+      elements: [
+        { offset: 0.5, color: 255, colorIndex: 1, lineType: 'BYLAYER' },
+        { offset: -0.5, color: 65535, colorIndex: 3, lineType: 'DASHED' },
+      ],
     })
   })
 })
