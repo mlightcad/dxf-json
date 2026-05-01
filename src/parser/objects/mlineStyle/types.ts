@@ -1,6 +1,31 @@
 import type { CommonDXFObject } from '../types.ts'
 
 /**
+ * One MLINESTYLE element definition.
+ */
+export interface MLineStyleElement {
+  /**
+   * Group code 49: element offset.
+   */
+  offset?: number
+
+  /**
+   * Group code 420: element true color.
+   */
+  color?: number
+
+  /**
+   * Group code 62: element color index (ACI).
+   */
+  colorIndex?: number
+
+  /**
+   * Group code 6: element linetype name.
+   */
+  lineType?: string
+}
+
+/**
  * MLINESTYLE object fields mapped from AutoCAD DXF group codes.
  *
  * Reference:
@@ -43,10 +68,15 @@ export interface MLineStyleDXFObject extends CommonDXFObject {
   description?: string
 
   /**
-   * Group code 62: fill color.
-   * Default in spec is 256 (BYLAYER).
+   * Group code 420: fill true color.
    */
   fillColor?: number
+
+  /**
+   * Group code 62: fill color index (ACI).
+   * Default in spec is 256 (BYLAYER).
+   */
+  fillColorIndex?: number
 
   /**
    * Group code 51: start angle.
@@ -66,20 +96,7 @@ export interface MLineStyleDXFObject extends CommonDXFObject {
   elementCount?: number
 
   /**
-   * Group code 49 (repeated): element offsets.
-   * One entry per style element.
+   * Group codes 49/62/420/6: per-element definitions.
    */
-  elementOffsets?: number[]
-
-  /**
-   * Group code 62 (repeated after element definitions): element colors.
-   * One entry per style element.
-   */
-  elementColors?: number[]
-
-  /**
-   * Group code 6 (repeated): element linetype names.
-   * One entry per style element.
-   */
-  elementLineTypes?: string[]
+  elements?: MLineStyleElement[]
 }
