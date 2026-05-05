@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
 import { parseObjects } from '../parser.ts'
 import type { MLineStyleDXFObject } from './types.ts'
+import { DxfColorMethod } from '../../../types/color.ts'
 
 describe('MLINESTYLE parser', () => {
   test('parses MLINESTYLE object fields from DXF group codes', () => {
@@ -73,14 +74,33 @@ EOF`.split('\n')
       styleName: 'WALL',
       flags: 19,
       description: 'Wall style',
-      fillColor: 16777215,
-      fillColorIndex: 256,
+      fillColor: {
+        colorIndex: 256,
+        method: DxfColorMethod.BYLAYER,
+        trueColor: 16777215,
+      },
       startAngle: 90,
       endAngle: 45,
       elementCount: 2,
       elements: [
-        { offset: 0.5, color: 255, colorIndex: 1, lineType: 'BYLAYER' },
-        { offset: -0.5, color: 65535, colorIndex: 3, lineType: 'DASHED' },
+        {
+          offset: 0.5,
+          color: {
+            colorIndex: 1,
+            method: DxfColorMethod.ACI,
+            trueColor: 255,
+          },
+          lineType: 'BYLAYER',
+        },
+        {
+          offset: -0.5,
+          color: {
+            colorIndex: 3,
+            method: DxfColorMethod.ACI,
+            trueColor: 65535,
+          },
+          lineType: 'DASHED',
+        },
       ],
     })
   })

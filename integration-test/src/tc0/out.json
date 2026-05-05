@@ -362,143 +362,6 @@
     "$CSHADOW": 0,
     "$SHADOWPLANELOCATION": 0
   },
-  "classes": [
-    {
-      "name": "ACDBDICTIONARYWDFLT",
-      "cppClassName": "AcDbDictionaryWithDefault",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 0,
-      "instanceCount": 1,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "DICTIONARYVAR",
-      "cppClassName": "AcDbDictionaryVar",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 0,
-      "instanceCount": 13,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "TABLESTYLE",
-      "cppClassName": "AcDbTableStyle",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 4095,
-      "instanceCount": 1,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "MATERIAL",
-      "cppClassName": "AcDbMaterial",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1153,
-      "instanceCount": 3,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "VISUALSTYLE",
-      "cppClassName": "AcDbVisualStyle",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 4095,
-      "instanceCount": 24,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "SCALE",
-      "cppClassName": "AcDbScale",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1153,
-      "instanceCount": 17,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "MLEADERSTYLE",
-      "cppClassName": "AcDbMLeaderStyle",
-      "appName": "ACDB_MLEADERSTYLE_CLASS",
-      "proxyFlag": 4095,
-      "instanceCount": 2,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "CELLSTYLEMAP",
-      "cppClassName": "AcDbCellStyleMap",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1152,
-      "instanceCount": 1,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "EXACXREFPANELOBJECT",
-      "cppClassName": "ExAcXREFPanelObject",
-      "appName": "EXAC_ESW",
-      "proxyFlag": 1025,
-      "instanceCount": 0,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "NPOCOLLECTION",
-      "cppClassName": "AcDbImpNonPersistentObjectsCollection",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1153,
-      "instanceCount": 0,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "LAYER_INDEX",
-      "cppClassName": "AcDbLayerIndex",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 0,
-      "instanceCount": 0,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "SPATIAL_INDEX",
-      "cppClassName": "AcDbSpatialIndex",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 0,
-      "instanceCount": 0,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "IDBUFFER",
-      "cppClassName": "AcDbIdBuffer",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 0,
-      "instanceCount": 0,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "ACDBSECTIONVIEWSTYLE",
-      "cppClassName": "AcDbSectionViewStyle",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1025,
-      "instanceCount": 1,
-      "wasProxy": false,
-      "isEntity": false
-    },
-    {
-      "name": "ACDBDETAILVIEWSTYLE",
-      "cppClassName": "AcDbDetailViewStyle",
-      "appName": "ObjectDBX Classes",
-      "proxyFlag": 1025,
-      "instanceCount": 1,
-      "wasProxy": false,
-      "isEntity": false
-    }
-  ],
   "blocks": {
     "*Model_Space": {
       "handle": "20",
@@ -653,6 +516,14 @@
       ],
       "name": "LAYER",
       "handle": "2",
+      "extensions": {
+        "ACAD_XDICTIONARY": [
+          {
+            "code": 360,
+            "value": "1FF"
+          }
+        ]
+      },
       "ownerObjectId": "0",
       "subclassMarker": "AcDbSymbolTable",
       "maxNumberOfEntries": 1
@@ -980,7 +851,8 @@
           "recordCloneFlag": 1,
           "entries": [
             {
-              "name": "ACAD_LAYERSTATES"
+              "name": "ACAD_LAYERSTATES",
+              "objectHardId": "200"
             }
           ]
         },
@@ -1503,7 +1375,8 @@
           "recordCloneFlag": 1,
           "entries": [
             {
-              "name": "FBXASSET"
+              "name": "FBXASSET",
+              "objectHardId": "1FA"
             }
           ]
         },
@@ -1516,7 +1389,8 @@
           "recordCloneFlag": 1,
           "entries": [
             {
-              "name": "FBXASSET"
+              "name": "FBXASSET",
+              "objectHardId": "1F8"
             }
           ]
         },
@@ -1559,7 +1433,8 @@
           "recordCloneFlag": 1,
           "entries": [
             {
-              "name": "ACAD_ROUNDTRIP_2008_TABLESTYLE_CELLSTYLEMAP"
+              "name": "ACAD_ROUNDTRIP_2008_TABLESTYLE_CELLSTYLEMAP",
+              "objectHardId": "2BB"
             }
           ]
         }
@@ -1582,7 +1457,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1F",
+          "ownerObjectId": "1A",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "none_device",
@@ -1597,8 +1472,8 @@
           "plotOriginX": 11.54999923706054,
           "plotOriginY": -13.65000009536743,
           "windowAreaXMin": 0,
-          "windowAreaXMax": 0,
           "windowAreaYMin": 0,
+          "windowAreaXMax": 0,
           "windowAreaYMax": 0,
           "printScaleNumerator": 1,
           "printScaleDenominator": 8.704084754739808,
@@ -1657,7 +1532,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "1A",
+          "paperSpaceTableId": "1F",
           "viewportId": "EA"
         },
         {
@@ -1671,7 +1546,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "D2",
+          "ownerObjectId": "1A",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1686,8 +1561,8 @@
           "plotOriginX": 0,
           "plotOriginY": 0,
           "windowAreaXMin": 0,
-          "windowAreaXMax": 0,
           "windowAreaYMin": 0,
+          "windowAreaXMax": 0,
           "windowAreaYMax": 0,
           "printScaleNumerator": 1,
           "printScaleDenominator": 1,
@@ -1746,7 +1621,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "1A"
+          "paperSpaceTableId": "D2"
         },
         {
           "name": "LAYOUT",
@@ -1759,7 +1634,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "D6",
+          "ownerObjectId": "1A",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1774,8 +1649,8 @@
           "plotOriginX": 0,
           "plotOriginY": 0,
           "windowAreaXMin": 0,
-          "windowAreaXMax": 0,
           "windowAreaYMin": 0,
+          "windowAreaXMax": 0,
           "windowAreaYMax": 0,
           "printScaleNumerator": 1,
           "printScaleDenominator": 1,
@@ -1834,9 +1709,312 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "1A"
+          "paperSpaceTableId": "D6"
+        }
+      ],
+      "MLEADERSTYLE": [
+        {
+          "name": "MLEADERSTYLE",
+          "handle": "12E",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "12D"
+              }
+            ]
+          },
+          "ownerObjectId": "12D",
+          "subclassMarker": "AcDbMLeaderStyle",
+          "unknown1": 2,
+          "contentType": 2,
+          "drawMLeaderOrderType": 1,
+          "drawLeaderOrderType": 0,
+          "maxLeaderSegmentPoints": 2,
+          "firstSegmentAngleConstraint": 0,
+          "secondSegmentAngleConstraint": 0,
+          "leaderLineType": 1,
+          "leaderLineColor": -1056964608,
+          "leaderLineTypeId": "14",
+          "leaderLineWeight": -2,
+          "landingEnabled": true,
+          "landingGap": 2,
+          "doglegEnabled": true,
+          "doglegLength": 8,
+          "description": "Standard",
+          "arrowheadSize": 4,
+          "defaultMTextContents": "",
+          "textStyleId": "11",
+          "textLeftAttachmentType": 1,
+          "textRightAttachmentType": 1,
+          "textAngleType": 1,
+          "textAlignmentType": 0,
+          "textColor": -1056964608,
+          "textHeight": 4,
+          "textFrameEnabled": false,
+          "textAlignAlwaysLeft": false,
+          "alignSpace": 4,
+          "blockContentColor": -1056964608,
+          "blockContentScale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "blockContentScaleEnabled": true,
+          "blockContentRotation": 0,
+          "blockContentRotationEnabled": true,
+          "blockContentConnectionType": 0,
+          "scale": 1,
+          "overwritePropertyValue": false,
+          "annotative": false,
+          "breakGapSize": 3.75,
+          "textAttachmentDirection": 0,
+          "bottomTextAttachmentDirection": 9,
+          "topTextAttachmentDirection": 9,
+          "unknown2": false
+        },
+        {
+          "name": "MLEADERSTYLE",
+          "handle": "13B",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "12D"
+              }
+            ]
+          },
+          "ownerObjectId": "12D",
+          "subclassMarker": "AcDbMLeaderStyle",
+          "unknown1": 2,
+          "contentType": 2,
+          "drawMLeaderOrderType": 1,
+          "drawLeaderOrderType": 0,
+          "maxLeaderSegmentPoints": 2,
+          "firstSegmentAngleConstraint": 0,
+          "secondSegmentAngleConstraint": 0,
+          "leaderLineType": 1,
+          "leaderLineColor": -1056964608,
+          "leaderLineTypeId": "14",
+          "leaderLineWeight": -2,
+          "landingEnabled": true,
+          "landingGap": 2,
+          "doglegEnabled": true,
+          "doglegLength": 8,
+          "description": "Standard",
+          "arrowheadSize": 4,
+          "defaultMTextContents": "",
+          "textStyleId": "11",
+          "textLeftAttachmentType": 1,
+          "textRightAttachmentType": 1,
+          "textAngleType": 1,
+          "textAlignmentType": 0,
+          "textColor": -1056964608,
+          "textHeight": 4,
+          "textFrameEnabled": false,
+          "textAlignAlwaysLeft": false,
+          "alignSpace": 4,
+          "blockContentColor": -1056964608,
+          "blockContentScale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "blockContentScaleEnabled": true,
+          "blockContentRotation": 0,
+          "blockContentRotationEnabled": true,
+          "blockContentConnectionType": 0,
+          "scale": 1,
+          "overwritePropertyValue": false,
+          "annotative": true,
+          "breakGapSize": 3.75,
+          "textAttachmentDirection": 0,
+          "bottomTextAttachmentDirection": 9,
+          "topTextAttachmentDirection": 9,
+          "unknown2": false
+        }
+      ],
+      "MLINESTYLE": [
+        {
+          "name": "MLINESTYLE",
+          "handle": "18",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "17"
+              }
+            ]
+          },
+          "ownerObjectId": "17",
+          "subclassMarker": "AcDbMlineStyle",
+          "styleName": "STANDARD",
+          "flags": 0,
+          "description": "",
+          "fillColor": {
+            "colorIndex": 256,
+            "method": "BYLAYER"
+          },
+          "startAngle": 90,
+          "endAngle": 90,
+          "elementCount": 2,
+          "elements": [
+            {
+              "offset": 0.5,
+              "color": {
+                "colorIndex": 256,
+                "method": "BYLAYER"
+              },
+              "lineType": "BYLAYER"
+            },
+            {
+              "offset": -0.5,
+              "color": {
+                "colorIndex": 256,
+                "method": "BYLAYER"
+              },
+              "lineType": "BYLAYER"
+            }
+          ]
         }
       ]
     }
-  }
+  },
+  "classes": [
+    {
+      "name": "ACDBDICTIONARYWDFLT",
+      "cppClassName": "AcDbDictionaryWithDefault",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "DICTIONARYVAR",
+      "cppClassName": "AcDbDictionaryVar",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 13,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "TABLESTYLE",
+      "cppClassName": "AcDbTableStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 4095,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "MATERIAL",
+      "cppClassName": "AcDbMaterial",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 3,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "VISUALSTYLE",
+      "cppClassName": "AcDbVisualStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 4095,
+      "instanceCount": 24,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "SCALE",
+      "cppClassName": "AcDbScale",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 17,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "MLEADERSTYLE",
+      "cppClassName": "AcDbMLeaderStyle",
+      "appName": "ACDB_MLEADERSTYLE_CLASS",
+      "proxyFlag": 4095,
+      "instanceCount": 2,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "CELLSTYLEMAP",
+      "cppClassName": "AcDbCellStyleMap",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1152,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "EXACXREFPANELOBJECT",
+      "cppClassName": "ExAcXREFPanelObject",
+      "appName": "EXAC_ESW",
+      "proxyFlag": 1025,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "NPOCOLLECTION",
+      "cppClassName": "AcDbImpNonPersistentObjectsCollection",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "LAYER_INDEX",
+      "cppClassName": "AcDbLayerIndex",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "SPATIAL_INDEX",
+      "cppClassName": "AcDbSpatialIndex",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "IDBUFFER",
+      "cppClassName": "AcDbIdBuffer",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "ACDBSECTIONVIEWSTYLE",
+      "cppClassName": "AcDbSectionViewStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1025,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "ACDBDETAILVIEWSTYLE",
+      "cppClassName": "AcDbDetailViewStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1025,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    }
+  ]
 }

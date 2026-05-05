@@ -126,6 +126,7 @@ export * from './parser/header/parser.ts'
 
 export * from './parser/shared/ensureHandle.ts'
 export * from './parser/shared/isMatched.ts'
+export * from './parser/shared/parseColor.ts'
 export * from './parser/shared/parsePoint.ts'
 export * from './parser/shared/parserGenerator.ts'
 export * from './parser/shared/extensions/parser.ts'

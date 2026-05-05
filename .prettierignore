@@ -1,0 +1,12 @@
+node_modules
+dist
+pages-dist
+coverage
+
+package-lock.json
+pnpm-lock.yaml
+
+dependency-graph.svg
+*.dxf
+*.partial_dxf
+sample

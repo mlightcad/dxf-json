@@ -1,7 +1,7 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
-import { generateIntegers } from '../../../utlis.ts'
 import { skipEmbeddedObject } from '../../ParseHelpers.ts'
 import {
+  ColorParser,
   createParser,
   DXFParserSnippet,
   Identity,
@@ -9,6 +9,7 @@ import {
 } from '../../shared/parserGenerator.ts'
 import { CommonEntitySnippets, createLongStringSnippet } from '../shared.ts'
 import type { MTextEntity } from './types.ts'
+import { ACI_TRUE_COLOR_NAME_CODES } from '../../shared/parseColor.ts'
 
 const DefaultMTextEntity = {
   textStyle: 'STANDARD',
@@ -73,23 +74,13 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
   },
   {
     // Color to use for background fill when group code 90 is 1.
-    code: 63,
-    name: 'backgroundFillColor',
-    parser: Identity,
+    code: ACI_TRUE_COLOR_NAME_CODES,
+    name: 'backgroundColor',
+    parser: ColorParser,
   },
   {
     code: 45,
     name: 'fillBoxScale',
-    parser: Identity,
-  },
-  {
-    code: [...generateIntegers(430, 440)], // named color
-    name: 'backgroundColor',
-    parser: Identity, // why this was separate from below one?
-  },
-  {
-    code: [...generateIntegers(420, 430)], // rgb
-    name: 'backgroundColor',
     parser: Identity,
   },
   {

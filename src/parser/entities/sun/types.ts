@@ -1,4 +1,5 @@
 import { ShadowType } from '../consts.ts'
+import type { DxfColor } from '../../../types/color.ts'
 import type { CommonDxfEntity } from '../shared.ts'
 
 /**
@@ -25,24 +26,8 @@ export interface SunEntity extends CommonDxfEntity {
   version: number
   /** Parsed by group code `290` */
   isOn: boolean
-  /**
-   * Indicates the color of sunlight in Autocad Color Index.
-   * If `lightColorInstance` exists, this represents the most simliar ACI color.
-   *
-   * Parsed by group code `63`
-   */
-  lightColorIndex: number
-  /**
-   * Inidicates the color of sunlight in rgb integer type.
-   * This exists when user defined light color cannot be represented in ACI.
-   *
-   * Parsed by group code `421`
-   *
-   * Also this is not related to common entity color defined by group code `420`.
-   *
-   * @note This property is not described in official document.
-   * */
-  lightColorInstance?: number
+  /** Parsed by group codes `63` and `421`. */
+  lightColor?: DxfColor
   /** Parsed by group code `40` */
   intensity: number
   /** Parsed by group code `291` */

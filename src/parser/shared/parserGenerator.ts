@@ -1,5 +1,6 @@
 import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
 import { isMatched } from './isMatched.ts'
+import { canMergeColor, isColorCode, parseColor } from './parseColor.ts'
 import { parsePoint } from './parsePoint.ts'
 
 export const Abort = Symbol()
@@ -30,7 +31,12 @@ export interface DXFParserSnippet {
    *         If returned value is `Abort`, caller will rewind the scanner by one group.
    *         It's very rare to return `Abort`.
    */
-  parser?(curr: ScannerGroup, scanner: DxfArrayScanner, entity: any): any
+  parser?(
+    curr: ScannerGroup,
+    scanner: DxfArrayScanner,
+    entity: any,
+    name?: string,
+  ): any
   /** When specific group code can be read multiple times, set this `true` */
   isMultiple?: boolean
   /** When isMultiple is `true`, save array when `false`, replace as is when `true` */
@@ -74,7 +80,7 @@ export function createParser(
       }
 
       const { name, parser, isMultiple, isReducible } = snippet
-      const parsedValue = parser?.(curr, scanner, target)
+      const parsedValue = parser?.(curr, scanner, target, name)
 
       if (parsedValue === Abort) {
         scanner.rewind()
@@ -202,6 +208,29 @@ export function Identity({ value }: ScannerGroup) {
 
 export function PointParser(_: any, scanner: DxfArrayScanner) {
   return parsePoint(scanner)
+}
+
+export function ColorParser(
+  curr: ScannerGroup,
+  scanner: DxfArrayScanner,
+  target: any,
+  name?: string,
+) {
+  if (!name) {
+    throw new Error('ColorParser requires a target field name')
+  }
+
+  const [leaf, fieldName] = getObjectByPath(target, name)
+  let color = parseColor(curr, leaf[fieldName])
+
+  curr = scanner.next()
+  while (isColorCode(curr.code) && canMergeColor(curr, color)) {
+    color = parseColor(curr, color)
+    curr = scanner.next()
+  }
+  scanner.rewind()
+
+  return color
 }
 
 export function ToBoolean({ value }: ScannerGroup) {

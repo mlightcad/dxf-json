@@ -3,6 +3,10 @@ import { Identity } from '../../shared/parserGenerator.ts'
 import { CommonObjectSnippets } from '../shared.ts'
 import type { MLineStyleDXFObject, MLineStyleElement } from './types.ts'
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { canMergeColor, parseColor } from '../../shared/parseColor.ts'
+import type { DxfColor } from '../../../types/color.ts'
+
+const MLINE_STYLE_COLOR_CODES = [62, 420, 430]
 
 /**
  * Assign a parsed element-level field into `object.elements`.
@@ -22,18 +26,26 @@ function assignElementField<K extends keyof MLineStyleElement>(
   object: Partial<MLineStyleDXFObject>,
   field: K,
   value: NonNullable<MLineStyleElement[K]>,
-) {
+  canMerge?: (value: MLineStyleElement[K] | undefined) => boolean,
+  merge?: (value: MLineStyleElement[K] | undefined) => MLineStyleElement[K],
+): MLineStyleElement {
   if (!object.elements) {
     object.elements = []
   }
 
-  const target = object.elements.find((element) => element[field] === undefined)
+  const target = object.elements.find((element) =>
+    canMerge ? canMerge(element[field]) : element[field] === undefined,
+  )
   if (target) {
-    target[field] = value
-    return
+    target[field] = merge ? merge(target[field]) : value
+    return target
   }
 
-  object.elements.push({ [field]: value } as Pick<MLineStyleElement, K>)
+  const element = {
+    [field]: merge ? merge(undefined) : value,
+  } as MLineStyleElement
+  object.elements.push(element)
+  return element
 }
 
 /**
@@ -68,47 +80,29 @@ function parseMLineStyleOffset(
  * Parse group code 62 (ACI color index).
  *
  * In MLINESTYLE, code 62 is overloaded:
- * - first occurrence before any element data => style `fillColorIndex`
- * - subsequent occurrences => element `colorIndex`
+ * - first occurrence before any element data => style `fillColor`
+ * - subsequent occurrences => element `color`
  *
  * We decide by checking whether fill color has been assigned and whether
  * any element parsing has started.
  */
-function parseMLineStyleColor(
-  { value }: ScannerGroup,
+function parseMLineStyleColorGroup(
+  curr: ScannerGroup,
   _: DxfArrayScanner,
   object: Partial<MLineStyleDXFObject>,
 ) {
-  // DXF group code 62 is overloaded in MLINESTYLE:
-  // first usage is fillColorIndex, repeated usages are element colorIndex.
-  if (object.fillColorIndex === undefined && !object.elements?.length) {
-    object.fillColorIndex = value
+  if (!object.elements?.length && canMergeColor(curr, object.fillColor)) {
+    object.fillColor = parseColor(curr, object.fillColor)
     return
   }
 
-  assignElementField(object, 'colorIndex', value)
-}
-
-/**
- * Parse group code 420 (true color, 24-bit RGB integer).
- *
- * Like code 62, code 420 is overloaded in MLINESTYLE:
- * - first occurrence before element data => style `fillColor`
- * - subsequent occurrences => element `color`
- */
-function parseMLineStyleTrueColor(
-  { value }: ScannerGroup,
-  _: DxfArrayScanner,
-  object: Partial<MLineStyleDXFObject>,
-) {
-  // Group code 420 is also overloaded in MLINESTYLE:
-  // first usage is fillColor, repeated usages are element colors.
-  if (object.fillColor === undefined && !object.elements?.length) {
-    object.fillColor = value
-    return
-  }
-
-  assignElementField(object, 'color', value)
+  assignElementField(
+    object,
+    'color',
+    parseColor(curr) as DxfColor,
+    (color) => canMergeColor(curr, color),
+    (color) => parseColor(curr, color) as DxfColor,
+  )
 }
 
 /**
@@ -125,13 +119,8 @@ export const MLineStyleSnippets: DXFParserSnippet[] = [
     isMultiple: true,
   },
   {
-    code: 62,
-    parser: parseMLineStyleColor,
-    isMultiple: true,
-  },
-  {
-    code: 420,
-    parser: parseMLineStyleTrueColor,
+    code: MLINE_STYLE_COLOR_CODES,
+    parser: parseMLineStyleColorGroup,
     isMultiple: true,
   },
   {
