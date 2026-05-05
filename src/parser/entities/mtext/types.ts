@@ -1,5 +1,6 @@
 import type { AttachmentPoint } from '../../../consts/dimension.ts'
 import type { Point3D } from '../../../types/shared.ts'
+import type { DxfColor } from '../../../types/color.ts'
 import type { CommonDxfEntity } from '../shared.ts'
 import type { MTextDrawingDirection } from './consts.ts'
 
@@ -19,9 +20,8 @@ export interface MTextEntity extends CommonDxfEntity {
   lineSpacingStyle: number
   lineSpacing: number
   backgroundFill: number
-  backgroundColor: number
+  backgroundColor?: DxfColor
   fillBoxScale: number
-  backgroundFillColor: number
   backgroundFillTransparency: number
   columnType: number
   columnCount: number

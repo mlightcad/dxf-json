@@ -1,12 +1,14 @@
 import type { ScannerGroup } from '../DxfArrayScanner.ts'
 import { parseExtensions } from '../shared/extensions/parser.ts'
 import type { PlotStyleType } from '../../consts/plotStyleType.ts'
-import type { ColorIndex, ColorInstance } from '../../types/color.ts'
+import type { DxfColor } from '../../types/color.ts'
 import {
+  ColorParser,
   type DXFParserSnippet,
   Identity,
   ToBoolean,
 } from '../shared/parserGenerator.ts'
+import { ENTITY_COLOR_CODES } from '../shared/parseColor.ts'
 import { XDataParserSnippets } from '../shared/xdata/parser.ts'
 import type { XData } from '../shared/xdata/types.ts'
 
@@ -18,7 +20,7 @@ export interface CommonDxfEntity {
   layer: string
   lineType?: string
   materialObjectHardId?: string
-  colorIndex?: ColorIndex
+  color?: DxfColor
   lineweight?: number // 문서에는 무조건 있다고 하는데, 실제로는 없는 경우 많음
   /** @default 1 If not presented */
   lineTypeScale?: number
@@ -43,22 +45,6 @@ export interface CommonDxfEntity {
    * @see https://help.autodesk.com/view/OARX/2025/ENU/?guid=GUID-3F0380A5-1C15-464D-BC66-2C5F094BCFB9
    */
   proxyEntity?: string
-  /**
-   * A 24-bit color value that should be dealt with in terms of bytes with values of 0 to 255.
-   *
-   * The lowest byte is the blue value, the middle byte is the green value, and the third byte is the red value. The top byte is always 0.
-   *
-   * The group code cannot be used by custom entities for their own data because
-   * the group code is reserved for AcDbEntity, class-level color data and AcDbEntity, class-level transparency data
-   *
-   * @note From v0.9.0, if there is no explicit 420 group code, no fallback will be given.
-   */
-  color?: ColorInstance
-  /**
-   * The group code cannot be used by custom entities for their own data because
-   * the group code is reserved for AcDbEntity, class-level color data and AcDbEntity, class-level transparency data
-   */
-  colorName?: string
   transparency?: number
   plotStyleType?: PlotStyleType
   plotStyleHardId?: string
@@ -103,14 +89,9 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     parser: Identity,
   },
   {
-    code: 430,
-    name: 'colorName',
-    parser: Identity,
-  },
-  {
-    code: 420,
+    code: ENTITY_COLOR_CODES,
     name: 'color',
-    parser: Identity,
+    parser: ColorParser,
   },
   {
     code: 310,
@@ -137,11 +118,6 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
   {
     code: 370,
     name: 'lineweight',
-    parser: Identity,
-  },
-  {
-    code: 62,
-    name: 'colorIndex',
     parser: Identity,
   },
   {

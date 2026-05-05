@@ -7,6 +7,7 @@ import type {
 } from '../../../consts/viewport.ts'
 import type { ShadePlotMode } from '../../../parser/objects/plotSettings/consts.ts'
 import type { CommonDxfEntity } from '../shared.ts'
+import type { DxfColor } from '../../../types/color.ts'
 
 export interface ViewportEntity extends CommonDxfEntity {
   type: 'VIEWPORT'
@@ -163,24 +164,8 @@ export interface ViewportEntity extends CommonDxfEntity {
   brightness: number
   /** Parsed by group code `142`. */
   contrast: number
-  /**
-   * Only exists if ambient light color is given in 16-bit color index
-   *
-   * Parsed by group code `63`.
-   * */
-  ambientLightColorIndex?: number
-  /**
-   * Only exists if ambient light color is given in 32-bit color instance
-   *
-   * Parsed by group code `421`.
-   * */
-  ambientLightColorInstance?: number
-  /**
-   * Only exists if ambient light color is given in string
-   *
-   * Parsed by group code `431`.
-   * */
-  ambientLightColorName?: string
+  /** Parsed by group codes `63`, `421`, and `431`. */
+  ambientLightColor?: DxfColor
   /** Parsed by group code `361`. */
   sunId?: string
   /**

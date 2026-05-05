@@ -1,11 +1,13 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
+  ColorParser,
   createParser,
   DXFParserSnippet,
   Identity,
   PointParser,
   ToBoolean,
 } from '../../shared/parserGenerator.ts'
+import { ACI_TRUE_COLOR_NAME_SINGLE_CODES } from '../../shared/parseColor.ts'
 import { CommonEntitySnippets } from '../shared.ts'
 import type { ViewportEntity } from './types.ts'
 
@@ -22,19 +24,9 @@ const ViewportParserSnippets: DXFParserSnippet[] = [
     parser: Identity,
   },
   {
-    code: 431,
-    name: 'ambientLightColorName',
-    parser: Identity,
-  },
-  {
-    code: 421,
-    name: 'ambientLightColorInstance',
-    parser: Identity,
-  },
-  {
-    code: 63,
-    name: 'ambientLightColorIndex',
-    parser: Identity,
+    code: ACI_TRUE_COLOR_NAME_SINGLE_CODES,
+    name: 'ambientLightColor',
+    parser: ColorParser,
   },
   {
     code: 142,

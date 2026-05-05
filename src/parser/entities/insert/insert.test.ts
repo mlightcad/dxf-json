@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { InsertEntityParser } from './parser.ts'
 import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
 import { PlotStyleType } from '../../../consts/plotStyleType.ts'
+import { DxfColorMethod } from '../../../types/color.ts'
 
 describe('INSERT Entity', () => {
   test('tc0', () => {
@@ -54,7 +55,10 @@ AcDbBlockReference
       name: '*U2203',
       lineType: 'ByBlock',
       materialObjectHardId: '45',
-      colorIndex: 0,
+      color: {
+        colorIndex: 0,
+        method: DxfColorMethod.BYBLOCK,
+      },
       transparency: 16777216,
       lineweight: -2,
       plotStyleType: PlotStyleType.ByBlock,

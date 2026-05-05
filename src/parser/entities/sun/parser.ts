@@ -2,10 +2,12 @@ import { CommonEntitySnippets } from '../shared.ts'
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import type { DXFParserSnippet } from '../../shared/parserGenerator.ts'
 import {
+  ColorParser,
   Identity,
   ToBoolean,
   createParser,
 } from '../../shared/parserGenerator.ts'
+import { ACI_TRUE_COLOR_NAME_SINGLE_CODES } from '../../shared/parseColor.ts'
 import type { SunEntity } from './types.ts'
 
 export const SunEntityParserSnippets: DXFParserSnippet[] = [
@@ -50,14 +52,9 @@ export const SunEntityParserSnippets: DXFParserSnippet[] = [
     parser: Identity,
   },
   {
-    code: 421,
-    name: 'lightColorInstance',
-    parser: Identity,
-  },
-  {
-    code: 63,
-    name: 'lightColorIndex',
-    parser: Identity,
+    code: ACI_TRUE_COLOR_NAME_SINGLE_CODES,
+    name: 'lightColor',
+    parser: ColorParser,
   },
   {
     code: 290,

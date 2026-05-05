@@ -5,6 +5,7 @@ import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
 import { ShadowType } from '../consts.ts'
 import { SunEntityParser } from './parser.ts'
 import { SunEntity } from './types.ts'
+import { DxfColorMethod } from '../../../types/color.ts'
 
 describe('SunEntity Parser', () => {
   test('tc0', () => {
@@ -33,8 +34,11 @@ describe('SunEntity Parser', () => {
       subclassMarker: 'AcDbSun',
       version: 1,
       isOn: true,
-      lightColorIndex: 7,
-      lightColorInstance: 16777215,
+      lightColor: {
+        colorIndex: 7,
+        method: DxfColorMethod.ACI,
+        trueColor: 16777215,
+      },
       intensity: 2,
       hasShadow: true,
       julianDay: 2460940,

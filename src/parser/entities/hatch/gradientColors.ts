@@ -1,4 +1,11 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import type { DxfColor } from '../../../types/color.ts'
+import { parseColor } from '../../shared/parseColor.ts'
+
+export interface HatchGradientColor {
+  reservedField: number
+  color?: DxfColor
+}
 
 /**
  * Parse gradient colors data
@@ -6,9 +13,9 @@ import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
  *   463 - reserved data for future use
  *   63 - color index (ACI)
  *   421 - RGB color value
- * 
+ *
  * This group repeats numberOfColors times
- * 
+ *
  * @param curr Current scanner group (should point to 463)
  * @param scanner DXF scanner
  * @returns Array of color objects containing rgb and tint information
@@ -16,8 +23,8 @@ import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 export function parseGradientColors(
   curr: ScannerGroup,
   scanner: DxfArrayScanner,
-): Array<{ reservedField: number; rgb: number; colorIndex?: number }> {
-  const colors: Array<{ reservedField: number; rgb: number; colorIndex?: number }> = []
+): HatchGradientColor[] {
+  const colors: HatchGradientColor[] = []
 
   // Start from 463 and process each color definition
   while (curr.code === 463) {
@@ -30,13 +37,13 @@ export function parseGradientColors(
 
     // Handle 63 (color index - ACI)
     if (curr.code === 63) {
-      color.colorIndex = curr.value
+      color.color = parseColor(curr, color.color)
       curr = scanner.next()
     }
 
     // Handle 421 (RGB color)
     if (curr.code === 421) {
-      color.rgb = curr.value
+      color.color = parseColor(curr, color.color)
       colors.push(color)
       curr = scanner.next()
     } else {
