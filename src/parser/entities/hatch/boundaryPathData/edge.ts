@@ -169,15 +169,16 @@ export const EdgeBoundaryPathDataSnippets: DXFParserSnippet[] = [
     name: 'edges',
     parser(curr, scanner) {
       const edge = { type: curr.value }
-      const parser = createParser(
-        EdgeSnippetMap[edge.type as BoundaryPathEdgeType],
-      )
-
-      if (!parser) {
-        throw new Error(`Invalid edge type ${edge.type}`)
+      const snippets =
+        EdgeSnippetMap[edge.type as BoundaryPathEdgeType]
+      if (snippets == null) {
+        throw new Error(
+          `Unsupported HATCH boundary edge type: ${edge.type} (expected 1–4: line, arc, elliptic arc, spline). This often happens when a polyline hatch boundary is parsed as edge segments (e.g. group 92 boundary flag missing the polyline bit). Try re-saving as ASCII DXF or simplifying hatch boundaries in CAD.`,
+        )
       }
+      const edgeParser = createParser(snippets)
       curr = scanner.next()
-      parser(curr, scanner, edge)
+      edgeParser(curr, scanner, edge)
       return edge
     },
     isMultiple: true,

@@ -2,7 +2,7 @@
   Do not add internal modules or types here
 */
 
-import DxfParser from 'dxf-json'
+import { DxfParser } from 'dxf-json'
 import {
   // consts
   BlockTypeFlag,
