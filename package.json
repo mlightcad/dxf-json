@@ -25,7 +25,9 @@
     "typetest": "npm --workspace=integration-test run build",
     "print": "vite-node ./scripts/print.ts",
     "viewer": "vite --host 127.0.0.1 --open /examples/dxf_json_viewer.html",
-    "viewer:build": "vite build --config ./vite.pages.config.ts"
+    "viewer:build": "vite build --config ./vite.pages.config.ts",
+    "publish:package": "npm publish --access public",
+    "release": "node scripts/release.mjs"
   },
   "repository": {
     "type": "git",
