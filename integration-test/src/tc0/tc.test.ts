@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import DxfParser from 'dxf-json'
+import { DxfParser } from 'dxf-json'
 
 describe('integration tc0', () => {
   test('tc0', () => {

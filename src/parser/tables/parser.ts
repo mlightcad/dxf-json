@@ -15,6 +15,7 @@ import { parseLTypeTable } from './ltype/parser.ts'
 import { parseStyleTable } from './style/parser.ts'
 import { parseUcsTableEntry } from './ucs/parser.ts'
 import { parseViewTableEntry } from './view/parser.ts'
+import { applyVPortTableEntryDefaults } from './vport/defaults.ts'
 import { parseVPortTable } from './vport/parser.ts'
 
 const TableParsers = {
@@ -104,6 +105,9 @@ export function parseTables(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
       const record = {} as any
       parseTable(curr, scanner, record)
+      if (name === 'VPORT') {
+        applyVPortTableEntryDefaults(record)
+      }
       tables[name]?.entries.push(record)
     }
     curr = scanner.next()

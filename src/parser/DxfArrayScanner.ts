@@ -30,6 +30,16 @@ export class DxfArrayScanner {
     this._eof = false
   }
 
+  /** Line-array index of the code line for the next group (before {@link next}). */
+  getReadIndex(): number {
+    return this._pointer
+  }
+
+  /** Raw DXF lines backing this scanner (for bounded lookahead). */
+  getLines(): readonly string[] {
+    return this._data
+  }
+
   next() {
     if (!this.hasNext()) {
       if (!this._eof) {
@@ -48,7 +58,11 @@ export class DxfArrayScanner {
       }
     }
 
-    const code = parseInt(this._data[this._pointer++], 10)
+    const codeLine = this._data[this._pointer++]
+    const code = parseInt(codeLine, 10)
+    if (Number.isNaN(code)) {
+      throwInvalidGroupCodeLine(codeLine)
+    }
     const value = parseGroupValue(code, this._data[this._pointer++], this.debug)
     const group = { code, value }
 
@@ -70,8 +84,13 @@ export class DxfArrayScanner {
       else throw new Error("Cannot call 'next' after EOF group has been read")
     }
 
+    const codeLine = this._data[this._pointer]
+    const peekCode = parseInt(codeLine, 10)
+    if (Number.isNaN(peekCode)) {
+      throwInvalidGroupCodeLine(codeLine)
+    }
     let group: ScannerGroup = {
-      code: parseInt(this._data[this._pointer]),
+      code: peekCode,
       value: 0,
     }
 
@@ -168,7 +187,19 @@ function normalizeGroupString(value: string) {
  * @returns {boolean}
  */
 function parseBoolean(str: string) {
-  if (str === '0') return false
-  if (str === '1') return true
+  const t = str.trim().toLowerCase()
+  if (t === '' || t === '0' || t === 'false' || t === 'f' || t === 'no')
+    return false
+  if (t === '1' || t === 'true' || t === 't' || t === 'yes') return true
+  const n = Number.parseFloat(t)
+  if (!Number.isNaN(n)) return n !== 0
   throw TypeError("String '" + str + "' cannot be cast to Boolean type")
+}
+
+function throwInvalidGroupCodeLine(codeLine: string) {
+  const preview =
+    codeLine.length > 120 ? `${codeLine.slice(0, 120)}…` : codeLine
+  throw new Error(
+    `Invalid DXF group code line: "${preview}". Expected a numeric group code (often caused by binary DXF, UTF-16-encoded DXF, or stray blank lines). Use ASCII/text DXF or remove blank lines between code/value pairs.`,
+  )
 }

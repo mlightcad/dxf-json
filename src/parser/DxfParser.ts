@@ -8,6 +8,7 @@ import { parseObjects } from './objects/parser.ts'
 import { parseThumbnailImage } from './thumbnailImage/parser.ts'
 import { isMatched } from './shared/isMatched.ts'
 import type { ParsedDxf } from './types.ts'
+import { assertAsciiDxf } from './shared/asciiDxf.ts'
 import type { Readable } from 'readable-stream'
 
 /** Options for {@link DxfParser} construction. */
@@ -41,6 +42,7 @@ export class DxfParser extends EventTarget {
     })
   }
   parseSync(dxfString: string, isDebugMode = false): ParsedDxf {
+    assertAsciiDxf(dxfString)
     const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g)
     const scanner = new DxfArrayScanner(dxfLinesArray, isDebugMode)
     if (!scanner.hasNext()) {
@@ -58,6 +60,7 @@ export class DxfParser extends EventTarget {
       })
       stream.on('end', () => {
         try {
+          assertAsciiDxf(dxfString)
           const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g)
           const scanner = new DxfArrayScanner(dxfLinesArray)
           if (!scanner.hasNext()) {

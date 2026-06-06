@@ -83,6 +83,8 @@ export * from './parser/entities/region/parser.ts'
 export * from './parser/entities/region/types.ts'
 export * from './parser/entities/section/parser.ts'
 export * from './parser/entities/section/types.ts'
+export * from './parser/entities/shape/parser.ts'
+export * from './parser/entities/shape/types.ts'
 export * from './parser/entities/solid/parser.ts'
 export * from './parser/entities/solid/types.ts'
 export * from './parser/entities/solid3d/parser.ts'
@@ -198,7 +200,3 @@ export * from './types/shared.ts'
 
 export * from './debug.ts'
 export * from './utlis.ts'
-
-import { DxfParser } from './parser/DxfParser.ts'
-
-export default DxfParser
