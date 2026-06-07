@@ -6,6 +6,7 @@ import { ShadowType } from '../consts.ts'
 import { LightEntityParser } from './parser.ts'
 import type { LightEntity } from './types.ts'
 import { AttenuationType, LightType } from './consts.ts'
+import { DxfColorMethod } from '../../../types/color.ts'
 
 describe('LightDXFEntity parser', () => {
   test('tc0', () => {
@@ -38,8 +39,11 @@ describe('LightDXFEntity parser', () => {
       name: 'light name',
       lightType: LightType.Point,
       isOn: true,
-      lightColorIndex: 192,
-      lightColorInstance: 6039756,
+      lightColor: {
+        colorIndex: 192,
+        method: DxfColorMethod.ACI,
+        trueColor: 6039756,
+      },
       isPlotGlyph: false,
       intensity: 1,
       position: { x: 87, y: 33, z: 0 },

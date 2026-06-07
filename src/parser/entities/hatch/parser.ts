@@ -1,5 +1,6 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
+  ColorParser,
   createParser,
   DXFParserSnippet,
   Identity,
@@ -148,7 +149,7 @@ const HatchSnippet: DXFParserSnippet[] = [
   {
     code: 63,
     name: 'patternFillColor',
-    parser: Identity,
+    parser: ColorParser,
   },
   {
     code: 70,

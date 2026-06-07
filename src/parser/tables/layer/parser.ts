@@ -1,4 +1,5 @@
 import {
+  ColorParser,
   createParser,
   DXFParserSnippet,
   Identity,
@@ -34,8 +35,8 @@ const LayerTableParserSnippets: DXFParserSnippet[] = [
   },
   {
     code: 62,
-    name: 'colorIndex',
-    parser: Identity,
+    name: 'color',
+    parser: ColorParser,
   },
   {
     code: 70,

@@ -1,10 +1,12 @@
 import {
+  ColorParser,
   createParser,
   DXFParserSnippet,
   Identity,
   PointParser,
   ToBoolean,
 } from '../../shared/parserGenerator.ts'
+import { ACI_TRUE_COLOR_NAME_SINGLE_CODES } from '../../shared/parseColor.ts'
 import { CommonTableEntryParserSnippets } from '../shared.ts'
 
 /**
@@ -41,9 +43,9 @@ import { CommonTableEntryParserSnippets } from '../shared.ts'
  */
 const VPortTableParserSnippets: DXFParserSnippet[] = [
   {
-    code: [63, 421, 431],
+    code: ACI_TRUE_COLOR_NAME_SINGLE_CODES,
     name: 'ambientColor',
-    parser: Identity,
+    parser: ColorParser,
   },
   {
     code: 142,

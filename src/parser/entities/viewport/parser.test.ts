@@ -10,6 +10,7 @@ import {
   RenderMode,
   UCSPerViewport,
 } from '../../../consts/viewport.ts'
+import { DxfColorMethod } from '../../../types/color.ts'
 
 describe('VIEWPORT', () => {
   test('subclassMarker', () => {
@@ -64,7 +65,10 @@ describe('VIEWPORT', () => {
       defaultLightingType: DefaultLightingType.TWO_DISTANT_LIGHTS,
       brightness: 0,
       contrast: 0,
-      ambientLightColorIndex: 256,
+      ambientLightColor: {
+        colorIndex: 256,
+        method: DxfColorMethod.BYLAYER,
+      },
     })
   })
 })

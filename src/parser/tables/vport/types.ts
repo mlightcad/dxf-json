@@ -3,6 +3,7 @@ import type {
   OrthographicType,
   DefaultLightingType,
 } from '../../../consts/viewport.ts'
+import type { DxfColor } from '../../../types/color.ts'
 import type { Point2D, Point3D } from '../../../types/shared.ts'
 import type { CommonDxfTableEntry } from '../types.ts'
 
@@ -50,5 +51,5 @@ export interface VPortTableEntry extends CommonDxfTableEntry {
   defaultLightingType: DefaultLightingType
   brightness: number
   contrast: number
-  ambientColor?: number
+  ambientColor?: DxfColor
 }

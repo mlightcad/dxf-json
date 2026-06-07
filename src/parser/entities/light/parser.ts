@@ -1,11 +1,13 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import type { DXFParserSnippet } from '../../shared/parserGenerator.ts'
 import {
+  ColorParser,
   createParser,
   Identity,
   PointParser,
   ToBoolean,
 } from '../../shared/parserGenerator.ts'
+import { ACI_TRUE_COLOR_NAME_SINGLE_CODES } from '../../shared/parseColor.ts'
 import { CommonEntitySnippets } from '../shared.ts'
 import type { LightEntity } from './types.ts'
 
@@ -86,14 +88,9 @@ export const LightEntitySnippet: DXFParserSnippet[] = [
     parser: ToBoolean,
   },
   {
-    code: 421,
-    name: 'lightColorInstance',
-    parser: Identity,
-  },
-  {
-    code: 63,
-    name: 'lightColorIndex',
-    parser: Identity,
+    code: ACI_TRUE_COLOR_NAME_SINGLE_CODES,
+    name: 'lightColor',
+    parser: ColorParser,
   },
   {
     code: 70,

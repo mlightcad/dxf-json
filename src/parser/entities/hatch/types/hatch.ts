@@ -8,6 +8,7 @@ import type {
 } from '../../../../consts/hatch.ts'
 import type { Point3D } from '../../../../types/shared.ts'
 import type { CommonDxfEntity } from '../../shared.ts'
+import type { DxfColor } from '../../../../types/color.ts'
 import type { BoundaryPath } from './boundaryPath.ts'
 import type { HatchDefinitionLine } from './definitionLine.ts'
 
@@ -18,7 +19,7 @@ interface HatchEntityBase extends CommonDxfEntity {
   extrusionDirection?: Point3D
   patternName: string
   solidFill: HatchSolidFill
-  patternFillColor: any // ?
+  patternFillColor?: DxfColor
   associativity: HatchAssociativity
   numberOfBoundaryPaths: number
   boundaryPaths: BoundaryPath[]
@@ -45,8 +46,7 @@ export interface GradientHatchEntity extends HatchEntityBase {
   colorTint?: number // 0 ~ 1, default = 0
   gradientColors?: Array<{
     reservedField: number
-    rgb: number
-    colorIndex?: number
+    color?: DxfColor
   }>
 }
 

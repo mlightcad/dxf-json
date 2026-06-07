@@ -1,4 +1,5 @@
 import type { CommonDXFObject } from '../types.ts'
+import type { DxfColor } from '../../../types/color.ts'
 
 /**
  * One MLINESTYLE element definition.
@@ -11,13 +12,9 @@ export interface MLineStyleElement {
 
   /**
    * Group code 420: element true color.
-   */
-  color?: number
-
-  /**
    * Group code 62: element color index (ACI).
    */
-  colorIndex?: number
+  color?: DxfColor
 
   /**
    * Group code 6: element linetype name.
@@ -69,14 +66,9 @@ export interface MLineStyleDXFObject extends CommonDXFObject {
 
   /**
    * Group code 420: fill true color.
-   */
-  fillColor?: number
-
-  /**
    * Group code 62: fill color index (ACI).
-   * Default in spec is 256 (BYLAYER).
    */
-  fillColorIndex?: number
+  fillColor?: DxfColor
 
   /**
    * Group code 51: start angle.
