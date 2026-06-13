@@ -1,19 +1,31 @@
 {
   "name": "@mlightcad/dxf-json",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "forked version of dxf-json",
   "type": "module",
   "main": "./dist/cjs/bundle.cjs",
   "module": "./dist/esm/bundle.mjs",
   "types": "./dist/cjs/types/index.d.ts",
   "exports": {
-    "import": {
-      "types": "./dist/esm/types/index.d.ts",
-      "default": "./dist/esm/bundle.mjs"
+    ".": {
+      "import": {
+        "types": "./dist/esm/types/index.d.ts",
+        "default": "./dist/esm/bundle.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/types/index.d.ts",
+        "default": "./dist/cjs/bundle.cjs"
+      }
     },
-    "require": {
-      "types": "./dist/cjs/types/index.d.ts",
-      "default": "./dist/cjs/bundle.cjs"
+    "./types": {
+      "import": {
+        "types": "./dist/esm/types/types-entry.d.ts",
+        "default": "./dist/esm/types-bundle.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/types/types-entry.d.ts",
+        "default": "./dist/cjs/types-bundle.cjs"
+      }
     }
   },
   "scripts": {
