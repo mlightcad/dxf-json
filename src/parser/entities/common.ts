@@ -1,0 +1,36 @@
+import type { ScannerGroup } from '../DxfArrayScanner.ts'
+import type { PlotStyleType } from '../../consts/plotStyleType.ts'
+import type { ColorIndex, ColorInstance } from '../../types/color.ts'
+import type { XData } from '../shared/xdata/types.ts'
+
+export interface CommonDxfEntity {
+  type: string
+  handle: string
+  ownerBlockRecordSoftId?: string
+  isInPaperSpace?: boolean
+  layer: string
+  lineType?: string
+  materialObjectHardId?: string
+  colorIndex?: ColorIndex
+  lineweight?: number
+  /** @default 1 If not presented */
+  lineTypeScale?: number
+  isVisible?: boolean
+  proxyByte?: number
+  proxyEntity?: string
+  color?: ColorInstance
+  colorName?: string
+  transparency?: number
+  plotStyleType?: PlotStyleType
+  plotStyleHardId?: string
+  shadowMode?: ShadowMode
+  xdata?: XData[]
+  extensions?: Record<string, ScannerGroup[]>
+}
+
+export enum ShadowMode {
+  CAST_AND_RECEIVE = 0,
+  CAST = 1,
+  RECEIVE = 2,
+  IGNORE = 3,
+}

@@ -1,7 +1,7 @@
 import type { DxfHeader } from '../types/dxfHeader.ts'
 import type { DxfClass } from './classes/types.ts'
 import type { DxfBlock } from './blocks/types.ts'
-import type { CommonDxfEntity } from './entities/shared.ts'
+import type { CommonDxfEntity } from './entities/common.ts'
 import type { CommonDXFObject } from './objects/types.ts'
 import type { BlockRecordTableEntry } from './tables/blockRecord/types.ts'
 import type { DimStylesTableEntry } from './tables/dimStyle/types.ts'
