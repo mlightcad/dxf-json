@@ -10,6 +10,11 @@ import type { FaceEntity } from './types.ts'
 
 const FaceEntityParserSnippets: DXFParserSnippet[] = [
   {
+    code: 70,
+    name: 'invisibleEdgeFlags',
+    parser: Identity,
+  },
+  {
     code: 13,
     name: 'vertices.3',
     parser: PointParser,

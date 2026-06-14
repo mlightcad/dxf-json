@@ -74,4 +74,15 @@ describe('3DFACE', () => {
       ],
     })
   })
+
+  test('invisible edge flags', () => {
+    const content = readFileSync(join(__dirname, './tc2.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = new FaceEntityParser()
+
+    let curr = scanner.next()
+    const entity = parser.parseEntity(scanner, curr)
+
+    expect(entity.invisibleEdgeFlags).toBe(5)
+  })
 })
