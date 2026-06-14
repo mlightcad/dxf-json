@@ -18,6 +18,16 @@ const SolidEntityParserSnippets: DXFParserSnippet[] = [
     name: 'subclassMarker',
     parser: Identity,
   },
+  {
+    code: 2,
+    name: 'guid',
+    parser: Identity,
+  },
+  {
+    code: 290,
+    name: 'satCache',
+    parser: Identity,
+  },
   ...createLongStringSnippet('data'),
   {
     code: 70,

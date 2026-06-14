@@ -4,7 +4,9 @@ This is forked version of [dotoritos-kim/dxf-json](https://github.com/dotoritos-
 
 Entities:
 
+- ACAD_PROXY_ENTITY
 - MLEADER (enhanced)
+- SHAPE
 - TABLE
 
 Objects:
