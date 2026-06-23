@@ -80,8 +80,7 @@ fileInput.addEventListener('change', async (event) => {
 
   try {
     const parser = new DxfParser()
-    const dxfText = await file.text()
-    const result = parser.parseSync(dxfText)
+    const result = parser.parseBuffer(new Uint8Array(await file.arrayBuffer()))
     const jsonEditor = getEditor()
     jsonEditor.set(result)
     jsonEditor.expandAll()
