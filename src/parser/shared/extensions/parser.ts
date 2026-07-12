@@ -36,7 +36,11 @@ export function parseExtensions(
 }
 
 function skipInvalidExtension(curr: ScannerGroup, scanner: DxfArrayScanner) {
-  while (!isMatched(curr, 102) && !isMatched(curr, 0, 'EOF')) {
+  while (
+    !isMatched(curr, 102) &&
+    !isMatched(curr, 0, 'EOF') &&
+    curr.code !== 0
+  ) {
     curr = scanner.next()
   }
 }
@@ -46,7 +50,11 @@ function parseApplicationGroup(
   scanner: DxfArrayScanner,
   groupCodes: any,
 ) {
-  while (!isMatched(curr, 102, '}') && !isMatched(curr, 0, 'EOF')) {
+  while (
+    !isMatched(curr, 102, '}') &&
+    !isMatched(curr, 0, 'EOF') &&
+    curr.code !== 0
+  ) {
     groupCodes.push(curr)
     curr = scanner.next()
   }

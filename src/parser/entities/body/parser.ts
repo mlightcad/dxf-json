@@ -4,11 +4,12 @@ import {
   DXFParserSnippet,
   Identity,
 } from '../../shared/parserGenerator.ts'
-import { CommonEntitySnippets, createLongStringSnippet } from '../shared.ts'
+import { CommonEntitySnippets } from '../shared.ts'
+import { createAcisPayloadSnippet } from '../acisPayload.ts'
 import type { BodyEntity } from './types.ts'
 
 const BodyEntityParserSnippets: DXFParserSnippet[] = [
-  ...createLongStringSnippet('data'),
+  ...createAcisPayloadSnippet('data'),
   {
     code: 70,
     name: 'version',

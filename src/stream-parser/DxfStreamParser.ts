@@ -48,7 +48,11 @@ export class DxfStreamParser extends EventTarget {
     tables: {},
     objects: {
       byName: {},
+      byHandle: {},
       byTree: undefined,
+    },
+    acdsData: {
+      byOwnerHandle: {},
     },
   }
 
@@ -138,6 +142,8 @@ export class DxfStreamParser extends EventTarget {
             break
           case 'OBJECTS':
             break
+          case 'ACDSDATA':
+            break
         }
       }
     }
@@ -200,6 +206,9 @@ export class DxfStreamParser extends EventTarget {
           break
         case 'OBJECTS':
           this._curSection = 'OBJECTS'
+          break
+        case 'ACDSDATA':
+          this._curSection = 'ACDSDATA'
           break
       }
       this._eof = false

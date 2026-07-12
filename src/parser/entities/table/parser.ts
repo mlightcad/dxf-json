@@ -105,7 +105,6 @@ export class TableEntityParser {
           curr = scanner.lastReadGroup;
           break;
         default:
-          // console.log(curr.code, curr.value);
           helpers.checkCommonEntityProperties(entity, curr, scanner);
           curr = scanner.next();
           break;
@@ -254,9 +253,13 @@ function parserCellValue(cell: TableCell, scanner: DxfArrayScanner, curr: Scanne
         curr = scanner.next();
         break;
       default:
-        console.log(`Ignore code: ${curr.code}, value: ${curr.value}`);
-        curr = scanner.next();
-        break;
+        if (scanner.debug) {
+          console.warn(
+            `parserCellValue: Ignore code: ${curr.code}, value: ${curr.value}`,
+          )
+        }
+        curr = scanner.next()
+        break
     }
   }
   return;

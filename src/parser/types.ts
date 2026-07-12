@@ -2,7 +2,7 @@ import type { DxfHeader } from '../types/dxfHeader.ts'
 import type { DxfClass } from './classes/types.ts'
 import type { DxfBlock } from './blocks/types.ts'
 import type { CommonDxfEntity } from './entities/common.ts'
-import type { CommonDXFObject } from './objects/types.ts'
+import type { CommonDXFObject, DxfObjectByHandle } from './objects/types.ts'
 import type { BlockRecordTableEntry } from './tables/blockRecord/types.ts'
 import type { DimStylesTableEntry } from './tables/dimStyle/types.ts'
 import type { LayerTableEntry } from './tables/layer/types.ts'
@@ -10,6 +10,8 @@ import type { LTypeTableEntry } from './tables/ltype/types.ts'
 import type { StyleTableEntry } from './tables/style/types.ts'
 import type { VPortTableEntry } from './tables/vport/types.ts'
 import type { DxfTable } from './tables/types.ts'
+
+import type { AcdsDataSection } from './acdsData/types.ts'
 
 export interface ParsedDxf {
   header: DxfHeader
@@ -26,10 +28,14 @@ export interface ParsedDxf {
   }
   objects: {
     byName: Record<string, CommonDXFObject[]>
+    /** Objects section lookup keyed by uppercase hexadecimal handle. */
+    byHandle: DxfObjectByHandle
     byTree?: CommonDXFObject
   }
   thumbnailImage?: {
     size: number
     data: string | Uint8Array
   }
+  /** R2013+ ACDSDATA section (binary ASM payloads linked to entities). */
+  acdsData?: AcdsDataSection
 }
