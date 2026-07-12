@@ -29,3 +29,6 @@ export interface HydratedDxfObject extends CommonDXFObject {
 export interface DxfDictionary extends HydratedDxfObject {
   entries?: Record<string, HydratedDxfObject>
 }
+
+/** Objects section lookup keyed by uppercase hexadecimal handle. */
+export type DxfObjectByHandle = Record<string, CommonDXFObject>

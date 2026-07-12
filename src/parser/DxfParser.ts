@@ -5,6 +5,7 @@ import { parseTables } from './tables/parser.ts'
 import { parseBlocks } from './blocks/parser.ts'
 import { parseEntities } from './entities/parser.ts'
 import { parseObjects } from './objects/parser.ts'
+import { parseAcdsData } from './acdsData/parser.ts'
 import { parseThumbnailImage } from './thumbnailImage/parser.ts'
 import { isMatched } from './shared/isMatched.ts'
 import type { ParsedDxf } from './types.ts'
@@ -121,7 +122,11 @@ export class DxfParser extends EventTarget {
       tables: {},
       objects: {
         byName: {},
+        byHandle: {},
         byTree: undefined,
+      },
+      acdsData: {
+        byOwnerHandle: {},
       },
     }
     let curr = scanner.next()
@@ -151,6 +156,9 @@ export class DxfParser extends EventTarget {
         } else if (isMatched(curr, 2, 'THUMBNAILIMAGE')) {
           curr = scanner.next()
           dxf.thumbnailImage = parseThumbnailImage(curr, scanner, this._options.thumbnailImageFormat)
+        } else if (isMatched(curr, 2, 'ACDSDATA')) {
+          curr = scanner.next()
+          dxf.acdsData = parseAcdsData(curr, scanner)
         }
       }
       curr = scanner.next()
