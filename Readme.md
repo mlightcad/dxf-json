@@ -6,6 +6,8 @@ Entities:
 
 - ACAD_PROXY_ENTITY
 - MLEADER (enhanced)
+- OLEFRAME
+- OLE2FRAME
 - SHAPE
 - TABLE
 
@@ -18,6 +20,7 @@ Objects:
 - LAYER_INDEX
 - MLEADERSTYLE
 - MLINESTYLE
+- XRECORD
 
 ## JSON Viewer
 

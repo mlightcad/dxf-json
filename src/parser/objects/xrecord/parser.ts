@@ -2,6 +2,7 @@ import {
   type DXFParserSnippet,
   Identity,
 } from '../../shared/parserGenerator.ts'
+import type { ScannerGroup } from '../../DxfArrayScanner.ts'
 import { CommonObjectSnippets } from '../shared.ts'
 
 /*
@@ -20,7 +21,7 @@ export const XRecordDXFObjectSnippet: DXFParserSnippet[] = [
       entity.data = []
 
       while (checkXRecordGroup(curr.code)) {
-        entity.data.push(curr)
+        entity.data.push(normalizeXRecordGroup(curr))
         curr = scanner.next()
       }
 
@@ -38,4 +39,19 @@ export const XRecordDXFObjectSnippet: DXFParserSnippet[] = [
 
 function checkXRecordGroup(code: number): boolean {
   return 1 <= code && code <= 369 && code !== 5 && code !== 105
+}
+
+function normalizeXRecordGroup(curr: ScannerGroup): ScannerGroup {
+  if (
+    310 <= curr.code &&
+    curr.code <= 319 &&
+    typeof curr.value === 'string'
+  ) {
+    return {
+      ...curr,
+      value: curr.value.toUpperCase(),
+    }
+  }
+
+  return curr
 }
