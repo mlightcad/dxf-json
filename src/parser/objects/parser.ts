@@ -15,6 +15,7 @@ import { PlotSettingsSnippets } from './plotSettings/parser.ts'
 import { SpatialFilterSnippets } from './spatial_filter/parser.ts'
 import { skipUnknownDxfObject } from './skipUnknownDxfObject.ts'
 import type { CommonDXFObject } from './types.ts'
+import { XRecordDXFObjectSnippet } from './xrecord/parser.ts'
 
 export { buildObjectByHandle }
 
@@ -30,6 +31,7 @@ const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
   LAYER_FILTER: LayerFilterSnippets,
   LAYER_INDEX: LayerIndexSnippets,
   DIMASSOC: DimAssocSnippets,
+  XRECORD: XRecordDXFObjectSnippet,
 }
 
 export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
