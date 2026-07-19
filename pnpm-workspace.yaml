@@ -1,2 +1,5 @@
 packages:
   - 'integration-test'
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
